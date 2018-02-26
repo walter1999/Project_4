@@ -38,20 +38,29 @@ void board::initializeBoard(){
                 row++;
                 if(value == '.'){
                     value = 0;
-                    sudokuB[row][column] = value;}
+                    sudokuB[row][column] = value;
+                    if(fin.eof()) num_of_boards++;}
                 else{
                     value = value;
-                    sudokuB[row][column] = value;}
+                    sudokuB[row][column] = value;
+                    if(fin.eof()) num_of_boards++;
+                    
+                }
                 
             }
             else{
                 
                 if(value == '.'){
                     value = 0;
-                    sudokuB[row][column] = value;}
+                    sudokuB[row][column] = value;
+                    if(fin.eof()) num_of_boards++;
+                    
+                }
                 else{
                     value = value;
-                    sudokuB[row][column] = value;}
+                    sudokuB[row][column] = value;
+                    if(fin.eof()) num_of_boards++;
+                }
             }
             
             column++;
@@ -114,8 +123,7 @@ void board::clearCell(int row, int col){
 }
 
 void board::updateConflicts(){
-    
-    
+    initializeConflicts();
 }
 
 bool board::checkSolve() const{
