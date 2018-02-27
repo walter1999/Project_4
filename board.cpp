@@ -74,63 +74,26 @@ void board::initializeBoard(){
 }
 
 void board::initializeConflicts(){
-// fill the array with the designatd values. In this case 0-8
-	
-	//create vector of vectors for columns 
-	
-	for(int col=0; col<9 ; col++){
-		vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done 
-		
-		for(int row=0; row<9; row++){
-
-		char holdValue= sudokuBoard[row][col];
-
-		if(holdValue !=0)
-			temp[holdValue]=true;
-
-		} 
-		
-		col.push_back(temp);
-   
-	}
-	
-	//create vector of vectors for rows 
-
-	for(int row=0; row<9 ; row++){
-                vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done
-
-                for(int col=0; col<9; col++){
-		
-		char holdValue= sudokuBoard[row][col];		
-
-                if(holdValue !==0)
-                        temp[holdValue]=true;
-
-                }
-
-               col.push_back(temp);
-
+ 
+    for(int row = 0; row<9; row++){
+        for(int col = 0; col<9; col++){
+            
+            
         }
-	
-	//create vectors of vector for square
-
-
-
-
-
-
-
-
-
+    }
+    
+    
 }
 
 void board::printBoard() const{
     
     for(int row=0; row<9; row++){
         for(int col=0; col<9; col++){
-            std::cout<<sudokuB[row][col];
+            char temp = sudokuB[row][col];
+            std::cout<<temp;
+            
         }
-        std::endl;
+        std::cout<<std::endl;
     }
  
     
@@ -139,13 +102,48 @@ void board::printBoard() const{
 
 void board::printConflicts() const{
     
+    for(int r_c_s= 0; r_c_s < 3; r_c_s++){
+        for(int rows = 0; rows < 9; rows++){
+            for(int cols = 0; cols < 9; cols++){
+                if(r_c_s == 0){
+                    std::cout<<"Row Conflicts"<<std::endl;
+                    bool temp;
+                    temp = row[rows][cols];
+                    if(temp == true){std::cout<<rows<<cols<<" TRUE"<<std::endl;}
+                    else {std::cout<<rows<<cols<<" FALSE"<<std::endl;}
+                }
+                
+                else if(r_c_s == 1){
+                    std::cout<<"Column Conflicts"<<std::endl;
+                    bool temp;
+                    temp = col[rows][cols];
+                    if(temp == true){std::cout<<rows<<cols<<" TRUE"<<std::endl;}
+                    else {std::cout<<rows<<cols<<" FALSE"<<std::endl;}
+                }
+                
+                else if(r_c_s == 2){
+                    std::cout<<"Square Conflicts"<<std::endl;
+                    bool temp;
+                    temp = sqr[rows][cols];
+                    if(temp == true){std::cout<<rows<<cols<<" TRUE"<<std::endl;}
+                    else {std::cout<<rows<<cols<<" FALSE"<<std::endl;}
+                }
+                
+            }
+            
+        }
+        
+    }
     
     
 }
 
-bool board::checkValue(int row, int col, char value) const{
+
+bool board::checkValue(int rows, int cols, char value) const{
     
-    
+    if(col[cols][value - 1] == false || row[rows][value-1] == false || UsedInBox(rows, cols, value) == false)
+        return true;
+    else return false;
     
 }
 
