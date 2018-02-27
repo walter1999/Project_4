@@ -65,16 +65,54 @@ void board::initializeBoard(){
 }
 
 void board::initializeConflicts(){
-    int row;
-    int column;
-    
-    for(row = 0; row<9; row++){
-        for(col)
-    }
-    
-    
-    
-    
+// fill the array with the designatd values. In this case 0-8
+	
+	//create vector of vectors for columns 
+	
+	for(int col=0; col<9 ; col++){
+		vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done 
+		
+		for(int row=0; row<9; row++){
+
+		char holdValue= sudokuBoard[row][col];
+
+		if(holdValue !=0)
+			temp[holdValue]=true;
+
+		} 
+		
+		col.push_back(temp);
+   
+	}
+	
+	//create vector of vectors for rows 
+
+	for(int row=0; row<9 ; row++){
+                vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done
+
+                for(int col=0; col<9; col++){
+		
+		char holdValue= sudokuBoard[row][col];		
+
+                if(holdValue !==0)
+                        temp[holdValue]=true;
+
+                }
+
+               col.push_back(temp);
+
+        }
+	
+	//create vectors of vector for square
+
+
+
+
+
+
+
+
+
 }
 
 void board::printBoard() const{
