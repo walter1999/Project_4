@@ -79,14 +79,14 @@ void board::initializeConflicts(){
 	//create vector of vectors for columns 
 	
 	for(int col=0; col<9 ; col++){
-		vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done 
+		vector<bool> temp(9, false);// creates temp vector thats going to be .push_back after each column if done 
 		
 		for(int row=0; row<9; row++){
 
 		char holdValue= sudokuBoard[row][col];
 
 		if(holdValue !=0)
-			temp[holdValue]=true;
+			temp[holdValue-1]=true;
 
 		} 
 		
@@ -97,14 +97,14 @@ void board::initializeConflicts(){
 	//create vector of vectors for rows 
 
 	for(int row=0; row<9 ; row++){
-                vector<bool> temp(9, true);// creates temp vector thats going to be .push_back after each column if done
+                vector<bool> temp(9, false)// creates temp vector thats going to be .push_back after each column if done
 
                 for(int col=0; col<9; col++){
 		
 		char holdValue= sudokuBoard[row][col];		
 
                 if(holdValue !==0)
-                        temp[holdValue]=true;
+                        temp[holdValue-1]=true;
 
                 }
 
@@ -114,7 +114,7 @@ void board::initializeConflicts(){
 	
 	//create vectors of vector for square
 
-
+	
 
 
 
